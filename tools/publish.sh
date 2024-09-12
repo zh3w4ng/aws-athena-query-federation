@@ -53,7 +53,7 @@ fi
 REGION=$3
 if [ -z "$REGION" ]
 then
-      REGION="us-east-1"
+      REGION="ap-southeast-1"
 fi
 
 echo "Using AWS Region $REGION"
@@ -115,7 +115,7 @@ EOM
 fi
 
 set -e
-mvn clean install -Dpublishing=true
+mvn clean install -Dpublishing=true -DskipTests=true
 
 sam package --template-file $2.yaml --output-template-file packaged.yaml --s3-bucket $1 --region $REGION
 sam publish --template packaged.yaml --region $REGION
